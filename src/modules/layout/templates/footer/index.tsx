@@ -12,93 +12,53 @@ export default async function Footer() {
   const productCategories = await listCategories()
 
   return (
-    <footer className="border-t border-ui-border-base w-full">
-      <div className="content-container flex flex-col w-full">
-        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
-          <div>
+    <footer className="border-t border-green-700 bg-gray-900 text-gray-300 w-full">
+      <div className="content-container flex flex-col w-full py-10">
+        <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-16">
+          {/* Logo / Branding */}
+          <div className="flex flex-col items-start">
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
+              className="text-green-400 text-xl font-semibold hover:text-green-300 transition-colors"
             >
-              Medusa Store
+              Jeevaverse
             </LocalizedClientLink>
+            <Text className="text-sm text-gray-400 mt-2">
+              Empowering digital commerce
+            </Text>
           </div>
-          <div className="text-small-regular gap-10 md:gap-x-16 grid grid-cols-2 sm:grid-cols-3">
-            {productCategories && productCategories?.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Categories
-                </span>
-                <ul
-                  className="grid grid-cols-1 gap-2"
-                  data-testid="footer-categories"
-                >
-                  {productCategories?.slice(0, 6).map((c) => {
-                    if (c.parent_category) {
-                      return
-                    }
 
-                    const children =
-                      c.category_children?.map((child) => ({
-                        name: child.name,
-                        handle: child.handle,
-                        id: child.id,
-                      })) || null
-
+          {/* Categories & Collections */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 text-sm">
+            {productCategories && productCategories.length > 0 && (
+              <div>
+                <span className="text-green-400 font-medium">Categories</span>
+                <ul className="mt-2 space-y-1">
+                  {productCategories.slice(0, 6).map((c) => {
+                    if (c.parent_category) return null
                     return (
-                      <li
-                        className="flex flex-col gap-2 text-ui-fg-subtle txt-small"
-                        key={c.id}
-                      >
+                      <li key={c.id}>
                         <LocalizedClientLink
-                          className={clx(
-                            "hover:text-ui-fg-base",
-                            children && "txt-small-plus"
-                          )}
+                          className="text-gray-400 hover:text-green-300 transition-colors"
                           href={`/categories/${c.handle}`}
-                          data-testid="category-link"
                         >
                           {c.name}
                         </LocalizedClientLink>
-                        {children && (
-                          <ul className="grid grid-cols-1 ml-3 gap-2">
-                            {children &&
-                              children.map((child) => (
-                                <li key={child.id}>
-                                  <LocalizedClientLink
-                                    className="hover:text-ui-fg-base"
-                                    href={`/categories/${child.handle}`}
-                                    data-testid="category-link"
-                                  >
-                                    {child.name}
-                                  </LocalizedClientLink>
-                                </li>
-                              ))}
-                          </ul>
-                        )}
                       </li>
                     )
                   })}
                 </ul>
               </div>
             )}
+
             {collections && collections.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus txt-ui-fg-base">
-                  Collections
-                </span>
-                <ul
-                  className={clx(
-                    "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
-                    {
-                      "grid-cols-2": (collections?.length || 0) > 3,
-                    }
-                  )}
-                >
-                  {collections?.slice(0, 6).map((c) => (
+              <div>
+                <span className="text-green-400 font-medium">Collections</span>
+                <ul className="mt-2 space-y-1">
+                  {collections.slice(0, 6).map((c) => (
                     <li key={c.id}>
                       <LocalizedClientLink
-                        className="hover:text-ui-fg-base"
+                        className="text-gray-400 hover:text-green-300 transition-colors"
                         href={`/collections/${c.handle}`}
                       >
                         {c.title}
@@ -108,15 +68,17 @@ export default async function Footer() {
                 </ul>
               </div>
             )}
-            <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus txt-ui-fg-base">Medusa</span>
-              <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
+
+            {/* Links */}
+            <div>
+              <span className="text-green-400 font-medium">Resources</span>
+              <ul className="mt-2 space-y-1">
                 <li>
                   <a
                     href="https://github.com/medusajs"
                     target="_blank"
                     rel="noreferrer"
-                    className="hover:text-ui-fg-base"
+                    className="text-gray-400 hover:text-green-300 transition-colors"
                   >
                     GitHub
                   </a>
@@ -126,7 +88,7 @@ export default async function Footer() {
                     href="https://docs.medusajs.com"
                     target="_blank"
                     rel="noreferrer"
-                    className="hover:text-ui-fg-base"
+                    className="text-gray-400 hover:text-green-300 transition-colors"
                   >
                     Documentation
                   </a>
@@ -136,18 +98,23 @@ export default async function Footer() {
                     href="https://github.com/medusajs/nextjs-starter-medusa"
                     target="_blank"
                     rel="noreferrer"
-                    className="hover:text-ui-fg-base"
+                    className="text-gray-400 hover:text-green-300 transition-colors"
                   >
-                    Source code
+                    Source Code
                   </a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="flex w-full mb-16 justify-between text-ui-fg-muted">
-          <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Medusa Store. All rights reserved.
+
+        {/* Divider */}
+        <div className="border-t border-green-700 mt-6 mb-4"></div>
+
+        {/* Bottom Section */}
+        <div className="flex flex-col md:flex-row items-center justify-between text-gray-400 text-sm">
+          <Text>
+            © {new Date().getFullYear()} Jeevaverse. All rights reserved.
           </Text>
           <MedusaCTA />
         </div>
