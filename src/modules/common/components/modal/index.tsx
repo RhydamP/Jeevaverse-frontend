@@ -18,7 +18,7 @@ const Modal = ({
   isOpen,
   close,
   size = "medium",
-  search = false,
+  search = true,
   children,
   'data-testid': dataTestId
 }: ModalProps) => {
