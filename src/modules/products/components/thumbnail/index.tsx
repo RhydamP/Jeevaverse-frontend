@@ -8,7 +8,7 @@ type ThumbnailProps = {
   thumbnail?: string | null
   // TODO: Fix image typings
   images?: any[] | null
-  size?: "small" | "medium" | "large" | "full" | "square"
+  size?: "small" | "medium" | "large" | "full" | "square" | "fit"
   isFeatured?: boolean
   className?: string
   "data-testid"?: string
@@ -37,6 +37,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
           "w-[290px]": size === "medium",
           "w-[440px]": size === "large",
           "w-full": size === "full",
+          "w-[50vw] h-[50vh] ": size === "fit"
         }
       )}
       data-testid={dataTestid}

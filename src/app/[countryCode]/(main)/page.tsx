@@ -27,11 +27,12 @@ export default async function Home(props: {
   if (!collections || !region) {
     return null
   }
-
+  
   return (
     <>
       <Hero />
       <div className="py-12">
+      <h1 className="flex items-center justify-center text-center w-full text-3xl collections-header">Popular Collections</h1>
         <ul className="flex flex-col gap-x-6">
           <FeaturedProducts collections={collections} region={region} />
         </ul>

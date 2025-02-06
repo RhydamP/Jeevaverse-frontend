@@ -21,7 +21,7 @@ export default async function Footer() {
               href="/"
               className="text-green-400 text-xl font-semibold hover:text-green-300 transition-colors"
             >
-              Jeevaverse
+              Jeevaverse  
             </LocalizedClientLink>
             <Text className="text-sm text-gray-400 mt-2">
               Empowering digital commerce

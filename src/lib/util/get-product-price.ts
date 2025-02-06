@@ -34,13 +34,24 @@ export function getProductPrice({
   product: HttpTypes.StoreProduct
   variantId?: string
 }) {
+  const defaultPriceObject = {
+    calculated_price_number: 0,
+    calculated_price: "0",
+    original_price_number: 0,
+    original_price: "0",
+    currency_code: "INR",
+    price_type: "default",
+    percentage_diff: "0",
+  }
+
+  
   if (!product || !product.id) {
     throw new Error("No product provided")
   }
 
   const cheapestPrice = () => {
     if (!product || !product.variants?.length) {
-      return null
+      return defaultPriceObject
     }
 
     const cheapestVariant: any = product.variants
@@ -52,12 +63,12 @@ export function getProductPrice({
         )
       })[0]
 
-    return getPricesForVariant(cheapestVariant)
+    return cheapestVariant ? getPricesForVariant(cheapestVariant) : defaultPriceObject
   }
 
   const variantPrice = () => {
     if (!product || !variantId) {
-      return null
+      return defaultPriceObject
     }
 
     const variant: any = product.variants?.find(
@@ -68,7 +79,7 @@ export function getProductPrice({
       return null
     }
 
-    return getPricesForVariant(variant)
+    return variant ? getPricesForVariant(variant) : defaultPriceObject
   }
 
   return {
