@@ -18,31 +18,167 @@
     color: #71d279;
 }
 
-/* body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background: #222;
-    font-family: 'Arial', sans-serif;
-    overflow: hidden;
-} */
+.cart-home{
+    display: block;
+}
+
+.home-page-black-shadow {
+    background: linear-gradient(to bottom, black, transparent);
+    color: white;
+}
+.category-header-white-shadow {
+    background: white;
+    color: white;
+}
+.category-header-black-shadow {
+    background: transparent;
+    color: white;
+}
+.home-page-white-shadow {
+    background: white;
+    color: white;
+}
+.menu-sidebar-black path{
+    stroke: black;
+}
+.menu-sidebar-white path{
+    stroke: white;
+}
 
 .masked-text {
     font-size: 2.5rem;
     font-weight: 400;
     font-family: 'Montserrat', sans-serif;
-    color: transparent;
-    background-image: url('/assets/gif/forest.png'); 
-    background-size: 200%; /* Enlarged for smooth animation */
-    background-position: 0 50%;
     background-clip: text;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 0px white; /* White outline with 2px width */
+    -webkit-text-fill-color: rgb(34, 34, 34);
+    -webkit-text-stroke: 0px rgb(122, 116, 116);
     text-shadow: 0px 0px 1px rgba(203, 203, 203, 0.5);
-    animation: animate-background 30s infinite alternate linear;
+}
+
+.unmasked-text {
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-family: 'Montserrat', sans-serif;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgb(231, 231, 231);
+    -webkit-text-stroke: 0px rgb(122, 116, 116);
+    text-shadow: 0px 0px 1px rgba(203, 203, 203, 0.5);
+    
+}
+
+.categories-text-black{
+    font-family: 'Montserrat', sans-serif;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgb(10, 10, 10);
+    -webkit-text-stroke: 0px rgb(122, 116, 116);
+    text-shadow: 0px 0px 1px rgba(203, 203, 203, 0.5);
+}
+
+.categories-text-white{
+    font-family: 'Montserrat', sans-serif;
+    background-clip: text;
+    color: white;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgb(226, 226, 226);
+    -webkit-text-stroke: 0px rgb(31, 31, 31);
+    text-shadow: 0px 0px 1px rgba(10, 10, 10, 0.5);
+}
+@media screen and (max-width: 1080px) {
+    .masking-container {
+        font-size: 1.8rem;  
+        flex-direction: row;
+        justify-items: center;
+        align-items: center;
+        margin-top: 25px;
+        margin-left: 20px ;
+    }
+    .cart-home{
+        display: none !important;
+    }
+    .hero-home{
+        height: 70vh;
+    }
+    .product-preview {
+        width: 150px; /* Reduce width on tablets */
+      }
+    
+      .product-title {
+        font-size: 0.9rem; /* Smaller text */
+      }
+    
+      .product-thumbnail {
+        height: 160px; /* Reduce image height */
+        object-fit: cover;
+      }
+      .unmasked-text{
+        font-size: 1.8rem;
+        color: aliceblue;
+    }
+}
+
+
+/* Mobile (480px and below) */
+@media screen and (max-width: 480px) {
+    .masking-container {
+        flex-direction: row;
+        justify-items: center;
+        align-items: center;
+        margin-top: 25px;
+        margin-left: 20px ;
+        .masked-text{
+            font-size: 1.4rem; 
+        }
+    }
+    .unmasked-text{
+        font-size: 1.4rem;
+        -webkit-text-fill-color: rgb(22, 22, 22);
+        -webkit-text-stroke: 0px rgb(122, 116, 116);
+        text-shadow: 0px 0px 1px rgba(203, 203, 203, 0.5);
+    }
+    .menu-sidebar-white path{
+        stroke:black;
+    }    
+    .categories-text-white{
+        font-family: 'Montserrat', sans-serif;
+        background-clip: text;
+        color: rgb(54, 54, 54);
+        -webkit-background-clip: text;
+    }
+    .cart-home{
+        display: none !important;
+    }
+    .hero-home{
+        height: 70vh;
+    }
+    .home-page-black-shadow {
+        background: white;
+        color: white;
+    }
+    .header-nav{
+        background: white;
+    }
+    
+    .product-preview {
+        width: 140px; /* Smaller preview for phones */
+      }
+    
+      .product-title {
+        font-size: 0.7rem; 
+      }
+    
+      .product-thumbnail {
+        height: 140px; /* Adjust image height */
+      }
+    .featured-pets{
+        font-size:larger;
+    }
+    .pet-thumbnail{
+        height: 30vh;
+    }
+    
 }
 
 @keyframes animate-background {

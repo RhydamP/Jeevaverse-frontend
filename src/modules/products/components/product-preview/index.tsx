@@ -19,23 +19,24 @@ export default function ProductPreview({
   const { cheapestPrice } = getProductPrice({ product })
 
   return (
-    <LocalizedClientLink href={`/products/${product.handle}`} className="group">
-      <div data-testid="product-wrapper">
+    <div data-testid="product-wrapper" className="product-preview">
+      <LocalizedClientLink href={`/products/${product.handle}`}>
         <Thumbnail
           thumbnail={product.thumbnail}
           images={product.images}
           size="full"
           isFeatured={isFeatured}
+          className="product-thumbnail"
         />
-        <div className="flex txt-compact-medium mt-4 justify-between">
-          <Text className="text-ui-fg-subtle" data-testid="product-title">
+        <div className="flex txt-compact-medium mt-4 justify-between ">
+          <Text className="text-ui-fg-subtle product-title" data-testid="product-title">
             {product.title}
           </Text>
-          <div className="flex items-center gap-x-2">
-            {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
+          <div className="flex items-center gap-x-2 ">
+            {cheapestPrice && <PreviewPrice price={cheapestPrice} textColor="text-black"  />}
           </div>
         </div>
-      </div>
-    </LocalizedClientLink>
+      </LocalizedClientLink>
+    </div>
   )
 }

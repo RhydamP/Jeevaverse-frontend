@@ -118,6 +118,13 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
             />
           </div>
           <Input
+              label="Phone"
+              name="phone"
+              defaultValue={billingAddress?.phone || undefined}
+              required
+              data-testid="billing-phone-input"
+            />
+          <Input
             label="Company"
             name="company"
             defaultValue={billingAddress?.company || undefined}

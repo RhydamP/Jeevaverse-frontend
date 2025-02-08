@@ -4,11 +4,11 @@ import React from "react"
 
 import PlaceholderImage from "@modules/common/icons/placeholder-image"
 
-type ThumbnailProps = {
+export type ThumbnailProps = {
   thumbnail?: string | null
   // TODO: Fix image typings
   images?: any[] | null
-  size?: "small" | "medium" | "large" | "full" | "square" | "fit"
+  size?: "small" | "medium" | "large" | "full" | "square" | "fit" | "contain"
   isFeatured?: boolean
   className?: string
   "data-testid"?: string
@@ -37,7 +37,8 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
           "w-[290px]": size === "medium",
           "w-[440px]": size === "large",
           "w-full": size === "full",
-          "w-[50vw] h-[50vh] ": size === "fit"
+          "w-[50vw] h-[50vh] ": size === "fit",
+          "contain" : size === "contain"
         }
       )}
       data-testid={dataTestid}

@@ -52,13 +52,15 @@ export default function ProductRail({
           View all
         </InteractiveLink>
       </div>
-      <ul className="grid grid-cols-2 small:grid-cols-3 gap-x-6 gap-y-24 small:gap-y-36">
-        {pricedProducts.map((product) => (
-          <li key={product.id}>
-            <ProductPreview product={product} region={region} isFeatured />
-          </li>
-        ))}
-      </ul>
+      <div className="overflow-x-auto md:overflow-visible snap-x snap-mandatory">
+        <ul className="flex gap-4 md:grid md:grid-cols-3 lg:grid-cols-4">
+          {pricedProducts.map((product) => (
+            <li key={product.id} className="snap-center">
+              <ProductPreview product={product} region={region} isFeatured />
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )       
 }

@@ -54,7 +54,7 @@ export default function FeaturedProducts({ region, collections }: FeaturedProduc
       </button>
 
       {/* Slideshow Container */}
-      <div className="relative w-full max-w-6xl mx-auto overflow-hidden">
+      <div className="relative w-full max-w-5xl mx-auto overflow-hidden">
         <div ref={sliderRef} className="flex w-full overflow-x-scroll scroll-smooth no-scrollbar">
           {collections.map((collection, i) => (
             <motion.div

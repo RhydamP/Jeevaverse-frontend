@@ -23,7 +23,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="h-[120vh] w-full border-b border-ui-border-base bg-ui-bg-subtle relative overflow-hidden">
+    <div className="h-[120vh] w-full border-b border-ui-border-base bg-ui-bg-subtle relative overflow-hidden hero-home">
       <AnimatePresence>
         <motion.div
           key={index}
@@ -46,13 +46,13 @@ const Hero = () => {
       {/* Navigation Buttons */}
       <button
         onClick={() => setIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70"
+        className="absolute left-4 top-1/2 w-12 h-12 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70"
       >
         ◀
       </button>
       <button
         onClick={() => setIndex((prevIndex) => (prevIndex + 1) % images.length)}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70"
+        className="absolute right-4 top-1/2 w-12 h-12transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70"
       >
         ▶
       </button>
