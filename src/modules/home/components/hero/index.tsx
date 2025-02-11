@@ -6,7 +6,6 @@ import Image from "next/image";
 
 const images = [
   "/assets/gif/Image.jpg",
-  "/assets/gif/Fly River Turtles (1).jpeg",
   "/assets/gif/parrot.jpg",
   "/assets/gif/iguana.jpg",
 ]; // Add your image paths
@@ -17,7 +16,7 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change image every 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
@@ -43,7 +42,6 @@ const Hero = () => {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation Buttons */}
       <button
         onClick={() => setIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)}
         className="absolute left-4 top-1/2 w-12 h-12 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70"

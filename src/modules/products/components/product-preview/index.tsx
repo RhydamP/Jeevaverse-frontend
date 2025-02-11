@@ -21,14 +21,17 @@ export default function ProductPreview({
   return (
     <div data-testid="product-wrapper" className="product-preview">
       <LocalizedClientLink href={`/products/${product.handle}`}>
+        <div className="">
         <Thumbnail
           thumbnail={product.thumbnail}
           images={product.images}
-          size="full"
+          size="contain"
           isFeatured={isFeatured}
-          className="product-thumbnail"
+          className="product-thumbnail w-[20vw] h-[30vh]"
         />
-        <div className="flex txt-compact-medium mt-4 justify-between ">
+        </div>
+        
+        <div className="flex txt-compact-medium mt-4 justify-between product-price-rail">
           <Text className="text-ui-fg-subtle product-title" data-testid="product-title">
             {product.title}
           </Text>

@@ -45,15 +45,15 @@ export default function ProductRail({
   if (!pricedProducts.length) return null
 
   return (
-    <div className="content-container py-3 small:py-14">
+    <div className="content-container py-3 sm:py-5 ">
       <div className="flex justify-between mb-8">
         <Text className="txt-xlarge">{collection.title}</Text>
         <InteractiveLink href={`/collections/${collection.handle}`}>
           View all
         </InteractiveLink>
       </div>
-      <div className="overflow-x-auto md:overflow-visible snap-x snap-mandatory">
-        <ul className="flex gap-4 md:grid md:grid-cols-3 lg:grid-cols-4">
+      <div className="overflow-x-auto md:overflow-visible snap-x snap-mandatory ">
+        <ul className="flex flex-row items-start justify-start gap-6 product-rail-card">
           {pricedProducts.map((product) => (
             <li key={product.id} className="snap-center">
               <ProductPreview product={product} region={region} isFeatured />

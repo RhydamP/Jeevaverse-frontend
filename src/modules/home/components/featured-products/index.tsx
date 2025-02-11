@@ -5,6 +5,7 @@ import { HttpTypes } from "@medusajs/types"
 import ProductRail from "@modules/home/components/featured-products/product-rail"
 import { motion } from "framer-motion"
 import FeaturedPet from "@modules/products/components/FeaturedPets.tsx"
+import CustomerReview from "@modules/checkout/components/customer-review/review"
 
 type FeaturedProductsProps = {
   region: HttpTypes.StoreRegion
@@ -88,6 +89,7 @@ export default function FeaturedProducts({ region, collections }: FeaturedProduc
       </button>
     </div>
     <FeaturedPet region={region} />
+    <CustomerReview/>
     </div>
   )
 }

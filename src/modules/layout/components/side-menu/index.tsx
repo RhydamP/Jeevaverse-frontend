@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation"
 const SideMenuItems = {
   Home: "/",
   Store: "/store",
+  "Contact-Us": "/contact",
   Account: "/account",
   Cart: "/cart",
 }
@@ -46,7 +47,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth="2"
-              className={`w-8 h-8 ${isHomePage ? (scrolling ? "menu-sidebar-black" : "menu-sidebar-white") : "menu-sidebar-black"}`}
+              className={`w-8 h-8 menu-sidebar-black`}
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -82,7 +83,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
               <li key={name}>
                 <LocalizedClientLink
                   href={href}
-                  className="text-3xl leading-10 hover:text-ui-fg-disabled"
+                  className="text-3xl leading-10 hover:text-ui-fg-disabled sm:text-lg"
                   onClick={() => setIsOpen(false)}
                 >
                   {name}
