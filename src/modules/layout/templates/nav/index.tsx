@@ -21,7 +21,7 @@ export default function Nav({ regions, productCategories }: NavProps) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolling(window.scrollY > window.innerHeight * 0.8);
+      setScrolling(window.scrollY > window.innerHeight * (0.2));
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -33,128 +33,126 @@ export default function Nav({ regions, productCategories }: NavProps) {
   const logo = "/assets/gif/logo.jpg";
 
   return (
-    <header className="bg-white sticky top-0 inset-x-0 w-full z-[50] shadow-md transition-all duration-300">
-      <nav className="content-container header-nav flex items-center justify-between w-full h-15 text-small-regular">
+    <header className="bg-white fixed top-0 inset-x-0 w-full z-[50] shadow-md transition-all duration-300">
+      <nav className=" content-container header-nav flex items-center justify-between w-full h-13 text-small-regular  p-2">
 
         {/* Left: Side Menu */}
-        <div className="flex-2 basis-0 h-full flex items-center">
+        <div className="flex-1 basis-0 h-full flex items-center">
           <div className="h-full w-full p-2 text-xl z-[100]">
             <SideMenu regions={regions} />
           </div>
         </div>
 
-        {/* Center: Logo */}
-        <div className="flex items-center m-2 ml-[3vw] h-full">
+        <div className={`search-full-nav transition-all duration-300 `}>
+          <div className="search flex items-center justify-center w-[70vw] ">
+            <SearchField />
+          </div>
           <LocalizedClientLink
             href="/"
-            className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
             data-testid="nav-store-link"
+            className="logo"
           >
-            <div className="flex items-center masking-container p-2 ">
-              <span className="flex items-center ">
-                <Image
-                  src={logo}
-                  alt='logo'
-                  width={120}
-                  height={80}
-
-                  className=""
-                />
-              </span>
-            </div>
+            <Image
+              src={logo}
+              alt='logo'
+              width={isHomePage ? (scrolling ? 180 : 500) : 180}
+              height={isHomePage ? (scrolling ? 180 : 500) : 180}
+              className="rounded-full transition-all duration-300 "
+            />
           </LocalizedClientLink>
-        </div>
-
-        <div className="search-nav">
-          <SearchField />
-          {/* Right: Account & Cart */}
-          {productCategories && productCategories.length > 0 && (
-            <div className={`w-full h-10 flex items-center justify-center bg-gray-100 border-gray-300 ${isHomePage
-              ? scrolling
-                ? "category-header-white-shadow"
-                : "category-header-black-shadow"
-              : "category-header-white-shadow"
-              }`}>
-              <ul className="flex gap-x-6" data-testid="footer-categories">
-                {productCategories.slice(0, 6).map((c) => {
-                  if (c.parent_category) return null;
-
-                  const children = c.category_children?.map((child) => ({
-                    name: child.name,
-                    handle: child.handle,
-                    id: child.id,
-                  })) || null;
-
-                  return (
-                    <li
-                      className={`flex flex-col gap-1 text-ui-fg-subtle txt-lg text-black`}
-                      key={c.id}
-                    >
-                      <LocalizedClientLink
-                        className={clx("hover:text-ui-fg-base", children && "txt-small-plus")}
-                        href={`/categories/${c.handle}`}
-                        data-testid="category-link"
-                      >
-                        {c.name}
-                      </LocalizedClientLink>
-                      {children && (
-                        <ul className="flex flex-wrap gap-x-3 ml-3">
-                          {children.map((child) => (
-                            <li key={child.id}>
-                              <LocalizedClientLink
-                                className="hover:text-ui-fg-base"
-                                href={`/categories/${child.handle}`}
-                                data-testid="category-link"
-                              >
-                                {child.name}
-                              </LocalizedClientLink>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
+          <div className=" w-full flex flex-row justify-center items-center">
+          <LocalizedClientLink
+            href="/store"
+            data-testid="nav-store-link"
+            className=""
+          >
+            <div className="hidden max-[800px]:flex max-[520px]:hidden justify-center items-center text-ui-fg-subtle text-gray-800 font-italic text-md">
+              See all Products
             </div>
-          )}
+            </LocalizedClientLink>
+            {productCategories && productCategories.length > 0 && (
+              <div className={`w-[50%] h-10 flex items-center justify-center bg-white border-gray-300 max-[800px]:hidden`}>
+                <ul className="flex gap-x-2" data-testid="footer-categories">
+                  {productCategories.slice(0, 6).map((c) => {
+                    if (c.parent_category) return null;
 
-        </div>
-        <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
-          <div className="hidden small:flex items-center gap-x-6 h-full">
-            <LocalizedClientLink
-              className={`hover:text-ui-fg-base text-sm font-italic w-20`}
-              href="/contact"
-              data-testid="nav-contact-link"
-            >
-              Contact Us
-            </LocalizedClientLink>
-          </div>
-          <div className="hidden small:flex items-center gap-x-6 h-full">
-            <LocalizedClientLink
-              className={`hover:text-ui-fg-base text-bold text-sm font-italic `}
-              href="/account"
-              data-testid="nav-account-link"
-            >
-              Account
-            </LocalizedClientLink>
-          </div>
-          <div className="cart-home">
-            <Suspense
-              fallback={
+                    const children = c.category_children?.map((child) => ({
+                      name: child.name,
+                      handle: child.handle,
+                      id: child.id,
+                    })) || null;
+
+                    return (
+                      <li
+                        className={`flex flex-col gap-1 text-ui-fg-subtle txt-lg text-black`}
+                        key={c.id}
+                      >
+                        <LocalizedClientLink
+                          className={clx("hover:text-ui-fg-base", children && "txt-small-plus")}
+                          href={`/categories/${c.handle}`}
+                          data-testid="category-link"
+                        >
+                          {c.name}
+                        </LocalizedClientLink>
+                        {children && (
+                          <ul className="flex flex-wrap gap-x-3 ml-3">
+                            {children.map((child) => (
+                              <li key={child.id}>
+                                <LocalizedClientLink
+                                  className="hover:text-ui-fg-base"
+                                  href={`/categories/${child.handle}`}
+                                  data-testid="category-link"
+                                >
+                                  {child.name}
+                                </LocalizedClientLink>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+            <div className="flex items-start gap-x-6 h-full flex-1 basis-0 justify-start header-cart">
+              <div className="hidden small:flex items-center h-full">
                 <LocalizedClientLink
-                  className="hover:text-ui-fg-base flex gap-2"
-                  href="/cart"
-                  data-testid="nav-cart-link"
+                  className={`hover:text-ui-fg-base text-sm font-italic w-20`}
+                  href="/contact"
+                  data-testid="nav-contact-link"
                 >
-                  Cart (0)
+                  Contact Us
                 </LocalizedClientLink>
-              }
-            >
-              <CartButton />
-            </Suspense>
+              </div>
+              <div className="hidden small:flex items-center h-full">
+                <LocalizedClientLink
+                  className={`hover:text-ui-fg-base text-bold text-sm font-italic `}
+                  href="/account"
+                  data-testid="nav-account-link"
+                >
+                  Account
+                </LocalizedClientLink>
+              </div>
+              <div className="cart-home">
+                <Suspense
+                  fallback={
+                    <LocalizedClientLink
+                      className="hover:text-ui-fg-base flex gap-2"
+                      href="/cart"
+                      data-testid="nav-cart-link"
+                    >
+                      Cart (0)
+                    </LocalizedClientLink>
+                  }
+                >
+                  <CartButton />
+                </Suspense>
+              </div>
+            </div>
           </div>
         </div>
+
       </nav>
 
       {/* Product Categories Inside Header */}
@@ -162,4 +160,3 @@ export default function Nav({ regions, productCategories }: NavProps) {
     </header>
   );
 }
-``

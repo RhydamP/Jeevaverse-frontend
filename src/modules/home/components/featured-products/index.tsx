@@ -6,6 +6,7 @@ import ProductRail from "@modules/home/components/featured-products/product-rail
 import { motion } from "framer-motion"
 import FeaturedPet from "@modules/products/components/FeaturedPets.tsx"
 import CustomerReview from "@modules/checkout/components/customer-review/review"
+import Blogs from "@modules/common/components/blog-component/blogs-grid"
 
 type FeaturedProductsProps = {
   region: HttpTypes.StoreRegion
@@ -90,6 +91,7 @@ export default function FeaturedProducts({ region, collections }: FeaturedProduc
     </div>
     <FeaturedPet region={region} />
     <CustomerReview/>
+    <Blogs/>
     </div>
   )
 }

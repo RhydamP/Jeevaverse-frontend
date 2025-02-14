@@ -65,7 +65,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
 
       {/* Sidebar */}
       <div
-        className={`fixed left-0 top-0 h-screen w-3/4 sm:w-1/3 md:w-1/4 bg-[rgba(3,7,18,0.9)] text-white shadow-lg z-[9999] transition-transform duration-300 ${
+        className={`fixed left-0 top-0 h-screen lg:w-1/5 sm:w-1/4 md:w-1/4 bg-[rgba(3,7,18,0.9)] text-white shadow-lg z-[9999] transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -83,7 +83,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
               <li key={name}>
                 <LocalizedClientLink
                   href={href}
-                  className="text-3xl leading-10 hover:text-ui-fg-disabled sm:text-lg"
+                  className="md:text-2xl leading-10 hover:text-ui-fg-disabled sm:text-lg"
                   onClick={() => setIsOpen(false)}
                 >
                   {name}

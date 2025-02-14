@@ -6,6 +6,7 @@ import { Text } from "@medusajs/ui"
 import InteractiveLink from "@modules/common/components/interactive-link"
 import ProductPreview from "@modules/products/components/product-preview"
 import { listProducts } from "@lib/data/products"
+import HomeProductPreview from "@modules/products/components/home-product-preview"
 
 export default function ProductRail({
   collection,
@@ -45,18 +46,18 @@ export default function ProductRail({
   if (!pricedProducts.length) return null
 
   return (
-    <div className="content-container py-3 sm:py-5 ">
+    <div className="content-container py-3 mx-3 sm:py-5 ">
       <div className="flex justify-between mb-8">
-        <Text className="txt-xlarge">{collection.title}</Text>
+        <Text className="text-xl font-italic text-lime-800">{collection.title}</Text>
         <InteractiveLink href={`/collections/${collection.handle}`}>
           View all
         </InteractiveLink>
       </div>
-      <div className="overflow-x-auto md:overflow-visible snap-x snap-mandatory ">
-        <ul className="flex flex-row items-start justify-start gap-6 product-rail-card">
+      <div className="">
+        <ul className="flex flex-row items-start justify-center gap-6 product-rail-card ">
           {pricedProducts.map((product) => (
-            <li key={product.id} className="snap-center">
-              <ProductPreview product={product} region={region} isFeatured />
+            <li key={product.id} className="snap-center ">
+              <HomeProductPreview product={product} region={region} isFeatured />
             </li>
           ))}
         </ul>

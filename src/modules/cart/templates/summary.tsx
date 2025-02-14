@@ -12,6 +12,8 @@ type SummaryProps = {
   cart: HttpTypes.StoreCart & {
     promotions: HttpTypes.StorePromotion[]
   }
+  customer: HttpTypes.StoreCustomer | null
+
 }
 
 function getCheckoutStep(cart: HttpTypes.StoreCart) {
@@ -24,7 +26,7 @@ function getCheckoutStep(cart: HttpTypes.StoreCart) {
   }
 }
 
-const Summary = ({ cart }: SummaryProps) => {
+const Summary = ({ cart , customer }: SummaryProps) => {
   const step = getCheckoutStep(cart)
 
   return (
@@ -35,12 +37,20 @@ const Summary = ({ cart }: SummaryProps) => {
       <DiscountCode cart={cart} />
       <Divider />
       <CartTotals totals={cart} />
-      <LocalizedClientLink
-        href={"/checkout?step=" + step}
-        data-testid="checkout-button"
-      >
-        <Button className="w-full h-10">Go to checkout</Button>
-      </LocalizedClientLink>
+      {!customer ? (
+        <LocalizedClientLink href="/account">
+          <Button className="w-full h-10">Sign in to continue</Button>
+        </LocalizedClientLink>
+      ) : (
+        <LocalizedClientLink
+          href={"/checkout?step=" + step}
+          data-testid="checkout-button"
+        >
+          <Button className="w-full h-10">Go to checkout</Button>
+        </LocalizedClientLink>
+      )}
+
+
     </div>
   )
 }

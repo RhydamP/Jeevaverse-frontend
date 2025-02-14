@@ -110,6 +110,7 @@ export default function FeaturedPet({
           </div>
         </LocalizedClientLink>
       ))}
-    </div></>
+    </div>
+    </>
   )
 }

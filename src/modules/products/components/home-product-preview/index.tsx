@@ -5,9 +5,9 @@ import { getProductPrice } from "@lib/util/get-product-price"
 import { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Thumbnail from "../thumbnail"
-import PreviewPrice from "./price"
+import PreviewPrice from "../product-preview/price"
 
-export default function ProductPreview({
+export default function HomeProductPreview({
   product,
   isFeatured,
   region,
@@ -27,7 +27,7 @@ export default function ProductPreview({
           images={product.images}
           size="contain"
           isFeatured={isFeatured}
-          className="product-preview-thumbnail"
+          className="product-thumbnail w-[25vh] h-[30vh]"
         />
         </div>
         

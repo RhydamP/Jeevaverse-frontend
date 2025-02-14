@@ -11,14 +11,14 @@ export default async function Footer() {
   const productCategories = await listCategories()
 
   return (
-    <footer className="border-t border-green-700 bg-gray-900 text-gray-300 w-full">
+    <footer className="border-t border-green-700 bg-gray-800 text-gray-300 w-full">
       <div className="content-container flex flex-col w-full py-10">
         <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-16">
           {/* Logo / Branding */}
           <div className="flex flex-col items-start">
             <LocalizedClientLink
               href="/"
-              className="text-green-400 text-xl font-semibold hover:text-green-300 transition-colors"
+              className="text-lime-500 text-xl font-semibold hover:text-green-300 transition-colors"
             >
               Jeevaverse  
             </LocalizedClientLink>
@@ -31,14 +31,14 @@ export default async function Footer() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 text-sm">
             {productCategories && productCategories.length > 0 && (
               <div>
-                <span className="text-green-400 font-medium">Categories</span>
+                <span className="text-lime-500 font-medium">Categories</span>
                 <ul className="mt-2 space-y-1">
                   {productCategories.slice(0, 6).map((c) => {
                     if (c.parent_category) return null
                     return (
                       <li key={c.id}>
                         <LocalizedClientLink
-                          className="text-gray-400 hover:text-green-300 transition-colors"
+                          className="text-gray-400 text-xs hover:text-lime-300 transition-colors"
                           href={`/categories/${c.handle}`}
                         >
                           {c.name}
@@ -52,12 +52,12 @@ export default async function Footer() {
 
             {collections && collections.length > 0 && (
               <div>
-                <span className="text-green-400 font-medium">Collections</span>
+                <span className="text-lime-500 font-medium">Collections</span>
                 <ul className="mt-2 space-y-1">
                   {collections.slice(0, 6).map((c) => (
                     <li key={c.id}>
                       <LocalizedClientLink
-                        className="text-gray-400 hover:text-green-300 transition-colors"
+                        className="text-gray-400 text-xs hover:text-lime-300 transition-colors"
                         href={`/collections/${c.handle}`}
                       >
                         {c.title}
@@ -70,16 +70,16 @@ export default async function Footer() {
 
             {/* Links */}
             <div>
-              <span className="text-green-400 font-medium">Resources</span>
+              <span className="text-lime-500 font-medium">Legal</span>
               <ul className="mt-2 space-y-1">
                 <li>
                   <a
                     href="https://github.com/medusajs"
                     target="_blank"
                     rel="noreferrer"
-                    className="text-gray-400 hover:text-green-300 transition-colors"
+                    className="text-gray-400 text-xs hover:text-lime-300 transition-colors"
                   >
-                    GitHub
+                    Privacy Policy
                   </a>
                 </li>
                 <li>
@@ -87,9 +87,9 @@ export default async function Footer() {
                     href="https://docs.medusajs.com"
                     target="_blank"
                     rel="noreferrer"
-                    className="text-gray-400 hover:text-green-300 transition-colors"
+                    className="text-gray-400 text-xs hover:text-lime-300 transition-colors"
                   >
-                    Documentation
+                    Terms and conditions
                   </a>
                 </li>
                 <li>
@@ -97,9 +97,9 @@ export default async function Footer() {
                     href="https://github.com/medusajs/nextjs-starter-medusa"
                     target="_blank"
                     rel="noreferrer"
-                    className="text-gray-400 hover:text-green-300 transition-colors"
+                    className="text-gray-400  text-xs hover:text-green-300 transition-colors"
                   >
-                    Source Code
+                    License and Agreement
                   </a>
                 </li>
               </ul>
@@ -108,7 +108,7 @@ export default async function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-green-700 mt-6 mb-4"></div>
+        <div className="border-t border-lime-500 mt-6 mb-4"></div>
 
         {/* Bottom Section */}
         <div className="flex flex-col md:flex-row items-center justify-between text-gray-400 text-sm">
