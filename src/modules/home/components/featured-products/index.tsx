@@ -35,7 +35,7 @@ export default function FeaturedProducts({ region, collections }: FeaturedProduc
     return () => clearInterval(interval)
   }, [collections.length, index])
 
-  if (!collectionsState.length || !regionSelected) return <p>No products available</p>
+  if (!collectionsState.length || !regionSelected) return <p className="flex items-center justify-center">No products available</p>
 
   return (
     <div>
