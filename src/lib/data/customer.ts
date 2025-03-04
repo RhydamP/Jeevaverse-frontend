@@ -14,6 +14,7 @@ import {
   setAuthToken,
 } from "./cookies"
 
+
 export const retrieveCustomer =
   async (): Promise<HttpTypes.StoreCustomer | null> => {
     const headers = {

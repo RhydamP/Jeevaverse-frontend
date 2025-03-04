@@ -37,14 +37,14 @@ export default function Nav({ regions, productCategories }: NavProps) {
       <nav className=" content-container header-nav flex items-center justify-between w-full h-13 text-small-regular  p-2">
 
         {/* Left: Side Menu */}
-        <div className="flex-1 basis-0 h-full flex items-center">
+        <div className="flex-1 basis-0 h-full flex items-start justify-start">
           <div className="h-full w-full p-2 text-xl z-[100]">
             <SideMenu regions={regions} />
           </div>
         </div>
 
         <div className={`search-full-nav transition-all duration-300 `}>
-          <div className="search flex items-center justify-center w-[70vw] ">
+          <div className="search flex items-center justify-center w-[90%] ">
             <SearchField />
           </div>
           <LocalizedClientLink
@@ -115,7 +115,7 @@ export default function Nav({ regions, productCategories }: NavProps) {
                 </ul>
               </div>
             )}
-            <div className="flex items-start gap-x-6 h-full flex-1 basis-0 justify-start header-cart">
+            <div className="flex items-end gap-x-6 h-full flex-1 basis-0 justify-end header-cart">
               <div className="hidden small:flex items-center h-full">
                 <LocalizedClientLink
                   className={`hover:text-ui-fg-base text-sm font-italic w-20`}

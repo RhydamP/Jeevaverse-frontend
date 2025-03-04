@@ -5,6 +5,7 @@ import { retrieveCart } from "@lib/data/cart"
 import CartDropdown from "../cart-dropdown"
 import { StoreCart } from "@medusajs/types";
 
+
 export default function CartButton() {
   const [cart, setCart] = useState<StoreCart | null>(null);
 
