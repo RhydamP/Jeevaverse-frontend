@@ -33,7 +33,7 @@ export async function GET() {
     });
 
     blogs.blogs.forEach((blog: { id: string }) => {
-      smStream.write({ url: `/blog/${blog.id}`, changefreq: "weekly", priority: 0.8 });
+      smStream.write({ url: `/blog/${blog.id}`, changefreq: "daily", priority: 0.8 });
     });
     smStream.end();
 
