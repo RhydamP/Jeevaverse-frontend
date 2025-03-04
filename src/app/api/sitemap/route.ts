@@ -3,6 +3,7 @@ import { SitemapStream, streamToPromise } from "sitemap";
 import { listProducts } from "@lib/data/products";
 import { listCollections } from "@lib/data/collections";
 import { HttpTypes } from "@medusajs/types";
+import { fetchBlogs , fetchBlogById } from "api/blog";
 
 export const dynamic = "force-dynamic";
 
@@ -20,6 +21,8 @@ export async function GET() {
       listCollections(),
     ]);
 
+    const blogs: any = await fetchBlogs(100, 0);
+
     response.products.forEach((product: HttpTypes.StoreProduct) => {
       smStream.write({ url: `/products/${product.handle}`, changefreq: "weekly", priority: 0.9 });
     });
@@ -29,7 +32,11 @@ export async function GET() {
       smStream.write({ url: `/collections/${collection.handle}`, changefreq: "weekly", priority: 0.9 });
     });
 
+    blogs.blogs.forEach((blog: { id: string }) => {
+      smStream.write({ url: `/blog/${blog.id}`, changefreq: "weekly", priority: 0.8 });
+    });
     smStream.end();
+
     const sitemap = await streamToPromise(smStream);
 
     return new NextResponse(sitemap.toString(), {
