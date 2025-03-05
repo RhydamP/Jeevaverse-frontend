@@ -72,7 +72,7 @@ export default function FeaturedPet({
   }, []);
 
   if (!sortproducts.length) {
-    return <Text className="bg-gradient-to-r from-green-400 via-green-600 to-green-800 bg-clip-text text-transparent">Loading featured pets...</Text>
+    return <Text className="flex items-center justify-center bg-gradient-to-r from-green-400 via-green-600 to-green-800 bg-clip-text text-transparent">Loading featured pets...</Text>
   }
 
   return (

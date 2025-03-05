@@ -8,7 +8,7 @@ const images = [
   "/assets/gif/Image.jpg",
   "/assets/gif/parrot.jpg",
   "/assets/gif/iguana.jpg",
-]; // Add your image paths
+]; 
 
 const Hero = () => {
   const [index, setIndex] = useState(0);
