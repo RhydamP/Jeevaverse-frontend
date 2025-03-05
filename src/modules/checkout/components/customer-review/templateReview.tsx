@@ -50,9 +50,9 @@ export default function ReviewRail({
                   Verified
                 </span>
               )}
-              <time dateTime={review.joinDate} className="block text-sm text-gray-500 dark:text-gray-400 article-text-view">
+              <span className="block text-sm text-gray-500 dark:text-gray-400 article-text-view">
                 Joined on {review.joinDate}
-              </time>
+              </span>
             </p>
           </div>
         </div>
@@ -65,9 +65,9 @@ export default function ReviewRail({
         </div>
 
         <footer className="mb-5 text-sm sm:text-xs text-gray-500 dark:text-gray-400 article-text-view">
-          <p>
-            Reviewed in {review.location} on <time dateTime={review.date}>{review.date}</time>
-          </p>
+          <span>
+            Reviewed in {review.location} on <p>{review.date}</p>
+          </span>
         </footer>
 
         <p className="mb-2 text-gray-500 dark:text-gray-400">{review.content}</p>

@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation"
 const SideMenuItems = {
   Home: "/",
   Store: "/store",
+  "Our Blogs": "/blogs",
   "Contact-Us": "/contact",
   Account: "/account",
   Cart: "/cart",
@@ -83,7 +84,7 @@ const SideMenu = ({ regions }: { regions: HttpTypes.StoreRegion[] | null }) => {
               <li key={name}>
                 <LocalizedClientLink
                   href={href}
-                  className="md:text-2xl leading-10 hover:text-ui-fg-disabled sm:text-lg"
+                  className="md:text-lg leading-10 hover:text-ui-fg-disabled sm:text-lg"
                   onClick={() => setIsOpen(false)}
                 >
                   {name}

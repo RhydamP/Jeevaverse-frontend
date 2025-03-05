@@ -84,11 +84,11 @@ export default function Nav({ regions, productCategories }: NavProps) {
 
                     return (
                       <li
-                        className={`flex flex-col gap-1 text-ui-fg-subtle txt-lg text-black`}
+                        className={`flex flex-col gap-1 pt-1 text-black`}
                         key={c.id}
                       >
                         <LocalizedClientLink
-                          className={clx("hover:text-ui-fg-base", children && "txt-small-plus")}
+                          className={clx("hover:text-ui-fg-base", children && "text-sm font-italic")}
                           href={`/categories/${c.handle}`}
                           data-testid="category-link"
                         >
@@ -116,6 +116,15 @@ export default function Nav({ regions, productCategories }: NavProps) {
               </div>
             )}
             <div className="flex items-end gap-x-6 h-full flex-1 basis-0 justify-end header-cart">
+            <div className="hidden small:flex items-center h-full">
+                <LocalizedClientLink
+                  className={`hover:text-ui-fg-base text-sm font-italic w-20`}
+                  href="/blogs"
+                  data-testid="nav-blogs-link"
+                >
+                  Our Blogs
+                </LocalizedClientLink>
+              </div>
               <div className="hidden small:flex items-center h-full">
                 <LocalizedClientLink
                   className={`hover:text-ui-fg-base text-sm font-italic w-20`}
