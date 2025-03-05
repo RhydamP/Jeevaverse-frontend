@@ -90,7 +90,6 @@ export default function FeaturedProducts({ region, collections }: FeaturedProduc
       </button>
     </div>
     <FeaturedPet region={region} />
-    <CustomerReview/>
     <Blogs/>
     </div>
   )

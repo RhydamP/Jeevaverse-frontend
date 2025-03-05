@@ -38,7 +38,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "jeevaverse.s3.amazonaws.com", // ✅ Add this line
+        hostname: "jeevaverse.s3.amazonaws.com", 
       },
     ],
   },
