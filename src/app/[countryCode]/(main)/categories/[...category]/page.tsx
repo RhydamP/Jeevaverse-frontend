@@ -6,16 +6,6 @@ import { StoreRegion } from "@medusajs/types"
 import CategoryTemplate from "@modules/categories/templates"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 
-// Add caching for data fetching
-import { cache } from 'react'
-
-// Cache the expensive data fetching operations
-const cachedListCategories = cache(listCategories)
-const cachedListRegions = cache(listRegions)
-const cachedGetCategoryByHandle = cache(getCategoryByHandle)
-
-// Implement pagination for generateStaticParams
-const BATCH_SIZE = 50 // Adjust based on your needs
 
 type Props = {
   params: Promise<{ category: string[]; countryCode: string }>
@@ -26,51 +16,37 @@ type Props = {
 }
 
 export async function generateStaticParams() {
-  try {
-    const [product_categories, regions] = await Promise.all([
-      cachedListCategories(),
-      cachedListRegions(),
-    ])
+  const product_categories = await listCategories()
 
-    if (!product_categories) {
-      return []
-    }
-
-    const countryCodes = regions?.map((r: StoreRegion) => 
-      r.countries?.map((c) => c.iso_2)
-    ).flat()
-
-    const categoryHandles = product_categories.map(
-      (category: any) => category.handle
-    )
-
-    // Generate params in batches to prevent memory issues
-    const staticParams = []
-    for (let i = 0; i < countryCodes.length; i += BATCH_SIZE) {
-      const countryBatch = countryCodes.slice(i, i + BATCH_SIZE)
-      const batchParams = countryBatch
-        .map((countryCode: string | undefined) =>
-          categoryHandles.map((handle: any) => ({
-            countryCode,
-            category: [handle],
-          }))
-        )
-        .flat()
-      staticParams.push(...batchParams)
-    }
-
-    return staticParams
-  } catch (error) {
-    console.error('Error generating static params:', error)
+  if (!product_categories) {
     return []
   }
+
+  const countryCodes = await listRegions().then((regions: StoreRegion[]) =>
+    regions?.map((r) => r.countries?.map((c) => c.iso_2)).flat()
+  )
+
+  const categoryHandles = product_categories.map(
+    (category: any) => category.handle
+  )
+
+  const staticParams = countryCodes
+    ?.map((countryCode: string | undefined) =>
+      categoryHandles.map((handle: any) => ({
+        countryCode,
+        category: [handle],
+      }))
+    )
+    .flat()
+
+  return staticParams
+
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   try {
     const params = await props.params
-    const productCategory = await cachedGetCategoryByHandle(params.category)
-
+    const productCategory = await getCategoryByHandle(params.category)
     if (!productCategory) {
       return notFound()
     }
@@ -79,7 +55,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     const description = productCategory.description ?? `${title} category.`
 
     return {
-      title: `${title} | Medusa Store`,
+      title: `${title} `,
       description,
       alternates: {
         canonical: `${params.category.join("/")}`,
@@ -110,7 +86,7 @@ export default async function CategoryPage(props: CategoryPageProps) {
     ])
 
     const { sortBy, page } = searchParams
-    const productCategory = await cachedGetCategoryByHandle(params.category)
+    const productCategory = await getCategoryByHandle(params.category)
 
     if (!productCategory) {
       return notFound()

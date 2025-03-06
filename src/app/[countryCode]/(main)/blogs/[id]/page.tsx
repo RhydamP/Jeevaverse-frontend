@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import BlogTemplate from "@modules/common/components/blog-component";
+import BlogByIdTemplate from "@modules/common/components/blog-component";
 import { fetchBlogById } from "api/blog";
 
 type Blog = {
@@ -37,18 +37,17 @@ type Props = {
   params: { id: string };
 };
 
-export default async function BlogPage({ params }: Props) {
+export default async function BlogByIdPage({ params }: Props) {
   const { id } = params;
 
   try {
-    const response = await fetchBlogById(id) as ApiResponse;
+    const response = await fetchBlogById(id) as any;
     const blogData = response?.blog;
-    console.log(blogData);
     if (!blogData) {
       return notFound();
     }
 
-    return <BlogTemplate data={blogData} />;
+    return <BlogByIdTemplate data={blogData} />;
   } catch (error) {
     console.error("Error fetching blog data:", error);
     return notFound();

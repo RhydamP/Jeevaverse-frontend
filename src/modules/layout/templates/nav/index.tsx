@@ -61,61 +61,80 @@ export default function Nav({ regions, productCategories }: NavProps) {
             />
           </LocalizedClientLink>
           <div className=" w-full flex flex-row justify-center items-center">
-          <LocalizedClientLink
-            href="/store"
-            data-testid="nav-store-link"
-            className=""
-          >
-            <div className="hidden max-[800px]:flex max-[520px]:hidden justify-center items-center text-ui-fg-subtle text-gray-800 font-italic text-md">
-              See all Products
-            </div>
+            <LocalizedClientLink
+              href="/store"
+              data-testid="nav-store-link"
+              className=""
+            >
+              <div className="hidden max-[800px]:flex max-[520px]:hidden justify-center items-center text-ui-fg-subtle text-gray-800 font-italic text-sm">
+                See all Products
+              </div>
             </LocalizedClientLink>
             {productCategories && productCategories.length > 0 && (
-              <div className={`w-[50%] h-10 flex items-center justify-center bg-white border-gray-300 max-[800px]:hidden`}>
-                <ul className="flex gap-x-2" data-testid="footer-categories">
-                  {productCategories.slice(0, 6).map((c) => {
-                    if (c.parent_category) return null;
+              <div className="relative w-[50%] h-10 flex items-center justify-center bg-white border-gray-300 max-[800px]:hidden">
+                {/* Trigger for dropdown */}
+                <div className="group relative cursor-pointer">
+                  <span className="px-4 py-2 hover:bg-gray-100 text-sm font-italic rounded-md text-black">
+                    See Categories
+                  </span>
 
-                    const children = c.category_children?.map((child) => ({
-                      name: child.name,
-                      handle: child.handle,
-                      id: child.id,
-                    })) || null;
+                  {/* Dropdown Menu */}
+                  <div className="absolute left-0 top-full mt-2 bg-white border border-gray-300 shadow-lg rounded-md hidden group-hover:block w-48 z-50">
+                    <ul className="flex flex-col p-2">
+                      {productCategories.slice(0, 6).map((c) => {
+                        if (c.parent_category) return null;
 
-                    return (
-                      <li
-                        className={`flex flex-col gap-1 text-ui-fg-subtle txt-lg text-black`}
-                        key={c.id}
-                      >
-                        <LocalizedClientLink
-                          className={clx("hover:text-ui-fg-base", children && "txt-small-plus")}
-                          href={`/categories/${c.handle}`}
-                          data-testid="category-link"
-                        >
-                          {c.name}
-                        </LocalizedClientLink>
-                        {children && (
-                          <ul className="flex flex-wrap gap-x-3 ml-3">
-                            {children.map((child) => (
-                              <li key={child.id}>
-                                <LocalizedClientLink
-                                  className="hover:text-ui-fg-base"
-                                  href={`/categories/${child.handle}`}
-                                  data-testid="category-link"
-                                >
-                                  {child.name}
-                                </LocalizedClientLink>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </li>
-                    );
-                  })}
-                </ul>
+                        const children = c.category_children?.map((child) => ({
+                          name: child.name,
+                          handle: child.handle,
+                          id: child.id,
+                        })) || null;
+
+                        return (
+                          <li key={c.id} className="relative group">
+                            <LocalizedClientLink
+                              className="block px-4 py-2 text-black hover:bg-gray-200"
+                              href={`/categories/${c.handle}`}
+                              data-testid="category-link"
+                            >
+                              {c.name}
+                            </LocalizedClientLink>
+
+                            {/* Subcategories dropdown */}
+                            {children && (
+                              <ul className="absolute left-full top-0 mt-0 bg-white shadow-md hidden group-hover:block w-48">
+                                {children.map((child) => (
+                                  <li key={child.id}>
+                                    <LocalizedClientLink
+                                      className="block px-4 py-2 text-black hover:bg-gray-200"
+                                      href={`/categories/${child.handle}`}
+                                      data-testid="category-link"
+                                    >
+                                      {child.name}
+                                    </LocalizedClientLink>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </div>
               </div>
             )}
+
             <div className="flex items-end gap-x-6 h-full flex-1 basis-0 justify-end header-cart">
+              <div className="hidden small:flex items-center h-full">
+                <LocalizedClientLink
+                  className={`hover:text-ui-fg-base text-sm font-italic w-20`}
+                  href="/blogs"
+                  data-testid="nav-blogs-link"
+                >
+                  Our Blogs
+                </LocalizedClientLink>
+              </div>
               <div className="hidden small:flex items-center h-full">
                 <LocalizedClientLink
                   className={`hover:text-ui-fg-base text-sm font-italic w-20`}

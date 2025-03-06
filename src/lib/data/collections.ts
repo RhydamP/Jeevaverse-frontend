@@ -35,7 +35,10 @@ export const listCollections = async (
       "/store/collections",
       {
         query: queryParams,
-        next,
+        next: {
+          ...next,
+          revalidate: 10
+        },
         cache: "force-cache",
       }
     )

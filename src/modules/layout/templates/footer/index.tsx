@@ -74,7 +74,7 @@ export default async function Footer() {
               <ul className="mt-2 space-y-1">
                 <li>
                   <a
-                    href="https://github.com/medusajs"
+                    href=""
                     target="_blank"
                     rel="noreferrer"
                     className="text-gray-400 text-xs hover:text-lime-300 transition-colors"
@@ -84,7 +84,7 @@ export default async function Footer() {
                 </li>
                 <li>
                   <a
-                    href="https://docs.medusajs.com"
+                    href=""
                     target="_blank"
                     rel="noreferrer"
                     className="text-gray-400 text-xs hover:text-lime-300 transition-colors"
@@ -94,7 +94,7 @@ export default async function Footer() {
                 </li>
                 <li>
                   <a
-                    href="https://github.com/medusajs/nextjs-starter-medusa"
+                    href=""
                     target="_blank"
                     rel="noreferrer"
                     className="text-gray-400  text-xs hover:text-green-300 transition-colors"

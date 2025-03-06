@@ -5,23 +5,23 @@ import { retrieveCart } from "@lib/data/cart"
 import CartDropdown from "../cart-dropdown"
 import { StoreCart } from "@medusajs/types";
 
-
 export default function CartButton() {
   const [cart, setCart] = useState<StoreCart | null>(null);
 
-  useEffect(() => {
-    const fetchCart = async () => {
-      try {
-        const response = await retrieveCart()
-        setCart(response)
-      } catch (error) {
-        console.error("Error fetching cart:", error)
-        setCart(null)
-      }
+  
+  const refreshCart = async () => {
+    try {
+      const response = await retrieveCart()
+      setCart(response)
+    } catch (error) {
+      console.error("Error fetching cart:", error)
+      setCart(null)
     }
+  }
 
-    fetchCart()
-  }, [])
+  useEffect(() => {
+    refreshCart()
+  }, []) 
 
-  return <CartDropdown cart={cart} />
+  return <CartDropdown cart={cart} refreshCart={refreshCart} />
 }

@@ -43,7 +43,10 @@ export async function retrieveCart(cartId?: string) {
           "*items, *region, *items.product, *items.variant, *items.thumbnail, *items.metadata, +items.total, *promotions, +shipping_methods.name",
       },
       headers,
-      next,
+      next: {
+        ...next,
+        revalidate: 10
+      },
       cache: "force-cache",
     })
     .then(({ cart }) => cart)

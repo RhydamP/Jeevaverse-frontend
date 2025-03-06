@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import { fetchBlogs } from "../../../../api/blog";
 import LocalizedClientLink from "../localized-client-link";
@@ -23,7 +24,6 @@ const Blogs: React.FC = () => {
   useEffect(() => {
     fetchBlogs(limit, offset)
       .then((response) => {
-        // Type assertion for the response type
         const data = response as FetchBlogsResponse;
         setBlogs(data.blogs);
       })
@@ -42,7 +42,7 @@ const Blogs: React.FC = () => {
       </h1>
       <div className="flex items-center justify-center">
         <div className=" grid grid-cols-1 sm:grid-cols-2 gap-8 p-6 max-w-7xl">
-          {blogs.map((blog) => {
+          {blogs && blogs.map((blog) => {
             // Extract the text from blog.description if it's an object
             const descriptionText =
               typeof blog.description === "object" && blog.description !== null
@@ -51,7 +51,7 @@ const Blogs: React.FC = () => {
 
             return (
               <div key={blog.id} className="pet-thumbnail relative w-90 h-full rounded-xl border-gray-900 overflow-hidden shadow-lg">
-                <LocalizedClientLink href={`/blog/${blog.id}`} className="group">
+                <LocalizedClientLink href={`/blogs/${blog.id}`} className="group">
                   <Thumbnail
                     thumbnail={blog.thumbnail_image1}
                     images={blog?.thumbnail_image1}
