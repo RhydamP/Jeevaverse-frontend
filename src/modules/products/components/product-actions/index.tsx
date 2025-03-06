@@ -1,6 +1,6 @@
 "use client"
 
-import { addToCart } from "@lib/data/cart"
+import { addToCart, retrieveCart } from "@lib/data/cart"
 import { useIntersection } from "@lib/hooks/use-in-view"
 import { HttpTypes } from "@medusajs/types"
 import { Button } from "@medusajs/ui"
@@ -111,6 +111,7 @@ export default function ProductActions({
     })
 
     setIsAdding(false)
+    await retrieveCart()
   }
 
   return (

@@ -4,6 +4,7 @@ import { listProducts } from "@lib/data/products";
 import { listCollections } from "@lib/data/collections";
 import { HttpTypes } from "@medusajs/types";
 import { fetchBlogs , fetchBlogById } from "api/blog";
+import { listCategories } from "@lib/data/categories";
 
 export const dynamic = "force-dynamic";
 
@@ -16,15 +17,20 @@ export async function GET() {
     staticRoutes.forEach((route) => smStream.write({ url: route, changefreq: "monthly", priority: 0.8 }));
 
     
-    const [{ response }, { collections }] = await Promise.all([
+    const [{ response }, { collections } ,  categories ] = await Promise.all([
       listProducts({ pageParam: 1, countryCode: "in", queryParams: { limit: 100 } }),
       listCollections(),
+      listCategories()
     ]);
 
     const blogs: any = await fetchBlogs(100, 0);
 
     response.products.forEach((product: HttpTypes.StoreProduct) => {
       smStream.write({ url: `/products/${product.handle}`, changefreq: "weekly", priority: 0.9 });
+    });
+
+    categories.forEach((category: HttpTypes.StoreProductCategory) => {
+      smStream.write({ url: `/categories/${category.handle}`, changefreq: "weekly", priority: 0.9 });
     });
 
     

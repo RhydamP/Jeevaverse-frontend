@@ -22,8 +22,10 @@ import { retrieveCustomer } from "@lib/data/customer"
 
 const CartDropdown = ({
   cart: cartState,
+  refreshCart,
 }: {
-  cart?: HttpTypes.StoreCart | null
+  cart?: HttpTypes.StoreCart | null,
+  refreshCart: ()=>Promise<void>
 }) => {
   const [activeTimer, setActiveTimer] = useState<NodeJS.Timer | undefined>(
     undefined
@@ -107,7 +109,7 @@ const CartDropdown = ({
       onMouseLeave={close}
     >
       <Popover className="relative h-full z-[50]">
-        <PopoverButton className="h-full">
+        <PopoverButton onClick={refreshCart} className="h-full">
           <LocalizedClientLink
             className="hover:text-ui-fg-base flex items-center space-x-1 text-white"
             href = {!customer ? "/account" : "/cart"}

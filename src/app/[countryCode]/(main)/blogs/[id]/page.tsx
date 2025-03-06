@@ -43,7 +43,6 @@ export default async function BlogByIdPage({ params }: Props) {
   try {
     const response = await fetchBlogById(id) as any;
     const blogData = response?.blog;
-    console.log(blogData);
     if (!blogData) {
       return notFound();
     }

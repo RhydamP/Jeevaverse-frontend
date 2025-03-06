@@ -19,7 +19,10 @@ export const listCategories = async (query?: Record<string, any>) => {
           limit,
           ...query,
         },
-        next,
+        next: {
+          ...next,
+          revalidate: 10
+        },
         cache: "force-cache",
       }
     )

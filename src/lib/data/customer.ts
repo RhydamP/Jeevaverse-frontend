@@ -32,7 +32,10 @@ export const retrieveCustomer =
           fields: "*orders",
         },
         headers,
-        next,
+        next: {
+          ...next,
+          revalidate: 10
+        },
         cache: "force-cache",
       })
       .then(({ customer }) => customer)
