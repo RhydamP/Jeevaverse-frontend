@@ -346,13 +346,13 @@ body {
     }
 
     .product-title {
-        font-size: 0.7rem;
+        font-size: 0.5rem;
     }
 
     .product-thumbnail {
-        width: 40vw;
-        height: 140px;
-        /* Adjust image height */
+        width: 25vw;
+        height: 10vh;
+        gap: 5;
     }
 
     .product-price-rail {
@@ -428,6 +428,9 @@ body {
 
     .contact-heading {
         font-size: larger;
+    }
+    .blog-text{
+        font-size: x-small;
     }
 }
 

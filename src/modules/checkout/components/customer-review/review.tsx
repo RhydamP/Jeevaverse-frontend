@@ -6,45 +6,58 @@ import ReviewRail from "./templateReview";
 const reviewsData = [
   {
     id: 1,
-    name: "Jese Leos",
-    joinDate: "August 2014",
+    name: "Amit Sharma",
+    joinDate: "February 2025",
     avatar: "/assets/gif/avatar.png",
     rating: 5,
-    date: "March 3, 2017",
-    title: "Exceptional quality and value!",
-    location: "United Kingdom",
-    content: "This is my third Invicta Pro Diver. They are just fantastic value for money. This one arrived yesterday and the first thing I did was set the time, popped on an identical strap from another Invicta and went in the shower with it to test the waterproofing.... No problems.",
-    additionalContent: "It is obviously not the same build quality as those very expensive watches. But that is like comparing a Citroën to a Ferrari. This watch was well under £100! An absolute bargain.",
-    helpfulCount: 19,
+    date: "February 25, 2024",
+    title: "Amazing experience with my Macaw!",
+    location: "Mumbai, India",
+    content: "I got a beautiful blue and gold macaw from Jeevaverse, and I couldn't be happier! The bird is healthy, active, and well-socialized. The team guided me on diet and care, and their support was excellent. Highly recommend for exotic pet lovers!",
+    helpfulCount: 22,
     verified: true
   },
   {
     id: 2,
-    name: "Sarah Johnson",
-    joinDate: "May 2015",
+    name: "Priya Verma",
+    joinDate: "July 2024",
     avatar: "/assets/gif/avatar.png",
     rating: 4,
-    date: "January 15, 2024",
-    title: "Great product with minor issues",
-    location: "United States",
-    content: "The quality is excellent for the price point. The only reason I'm giving it 4 stars instead of 5 is because the delivery took longer than expected. Otherwise, the product itself exceeds expectations.",
-    helpfulCount: 8,
+    date: "March 5, 2024",
+    title: "Beautiful Iguana, but delivery took time",
+    location: "Bangalore, India",
+    content: "I purchased a green iguana, and it arrived in perfect health. The packaging was excellent, and the team provided all necessary care instructions. However, the delivery took a bit longer than expected. Overall, a great experience!",
+    helpfulCount: 15,
     verified: true
   },
   {
     id: 3,
-    name: "Michael Chen",
-    joinDate: "December 2023",
+    name: "Rahul Mehta",
+    joinDate: "October 2024",
     avatar: "/assets/gif/avatar.png",
     rating: 5,
-    date: "February 1, 2024",
-    title: "Absolutely worth every penny!",
-    location: "Canada",
-    content: "I was skeptical at first, but this product has completely won me over. The attention to detail is impressive, and the customer service was outstanding when I had questions.",
-    helpfulCount: 12,
+    date: "March 8, 2024",
+    title: "Best place for exotic pets in India!",
+    location: "Delhi, India",
+    content: "I recently got a Sulcata tortoise from Jeevaverse, and I must say, their service is top-notch. The tortoise was healthy, active, and exactly as described. I also appreciated their post-purchase support. Will definitely buy again!",
+    helpfulCount: 18,
+    verified: true
+  },
+  {
+    id: 4,
+    name: "Sneha Reddy",
+    joinDate: "January 2025",
+    avatar: "/assets/gif/avatar.png",
+    rating: 5,
+    date: "March 1, 2024",
+    title: "My dream pet - Marmoset Monkey!",
+    location: "Hyderabad, India",
+    content: "Jeevaverse made my dream come true! I got a marmoset monkey from them, and he is just adorable. The pet arrived in perfect condition, and the team was very helpful in explaining how to take care of him. Totally recommend them!",
+    helpfulCount: 25,
     verified: true
   }
 ];
+
 
 export default function CustomerReview() {
   const [reviews, setReviews] = useState(reviewsData);
