@@ -42,8 +42,6 @@ export default function ProductRail({
     fetchProducts()
   }, [collection.id, region.id]) // Re-run when collection or region changes
 
-  if (loading) return <p>Loading...</p>
-  if (!pricedProducts.length) return null
 
   return (
     <div className="content-container py-3 mx-3 sm:py-5 ">
@@ -54,7 +52,7 @@ export default function ProductRail({
         </InteractiveLink>
       </div>
       <div className="">
-        <ul className="flex flex-row items-start justify-center gap-6 product-rail-card ">
+        <ul className="flex flex-row items-start gap-6 overflow-x-auto scroll-smooth no-scrollbar product-rail-card ">
           {pricedProducts.map((product) => (
             <li key={product.id} className="snap-center ">
               <HomeProductPreview product={product} region={region} isFeatured />
