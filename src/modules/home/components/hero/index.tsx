@@ -7,7 +7,7 @@ import Image from "next/image";
 const images = [
   "/assets/gif/Image.jpg",
   "/assets/gif/parrot.jpg",
-  "/assets/gif/iguana.jpg",
+  "/assets/gif/greeniguana.jpg",
 ]; 
 
 const Hero = () => {
